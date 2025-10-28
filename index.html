@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,18 +9,20 @@
     <style>
         /* Variables CSS para colores y tipografía */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --primary-light: #3b82f6;
-            --secondary: #f59e0b;
-            --secondary-dark: #d97706;
-            --dark: #1e293b;
-            --darker: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
+            --primary: #1a365d;
+            --primary-dark: #0f1f38;
+            --primary-light: #2d4a7a;
+            --secondary: #d4af37;
+            --secondary-dark: #b8941f;
+            --accent: #e53e3e;
+            --dark: #1a202c;
+            --darker: #0d1117;
+            --light: #f7fafc;
+            --gray: #718096;
             --gray-light: #e2e8f0;
-            --success: #10b981;
+            --success: #38a169;
             --font-main: 'Segoe UI', system-ui, sans-serif;
+            --font-heading: 'Georgia', serif;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -65,54 +68,58 @@
         }
 
         section {
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--dark);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
+            font-family: var(--font-heading);
         }
 
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 70px;
+            width: 100px;
             height: 4px;
-            background: var(--primary);
-            bottom: -10px;
+            background: var(--secondary);
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
         }
 
         .section-title p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--gray);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.8;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 32px;
             background: var(--primary);
             color: white;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .btn::before {
@@ -132,7 +139,7 @@
 
         .btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -147,17 +154,25 @@
             color: white;
         }
 
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #c53030;
+        }
+
         .btn-success {
             background: var(--success);
         }
 
         .btn-success:hover {
-            background: #0da271;
+            background: #2f855a;
         }
 
         /* Animaciones personalizadas */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -169,7 +184,7 @@
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
@@ -178,10 +193,15 @@
             100% { background-position: 200px; }
         }
 
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .fade-in.visible {
@@ -189,9 +209,10 @@
             transform: translateY(0);
         }
 
-        /* Header y Navegación */
+  /* Header y Navegación */
         header {
             background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
@@ -238,13 +259,14 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         .nav-links a {
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+            font-size: 1.05rem;
         }
 
         .nav-links a::after {
@@ -254,7 +276,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--secondary);
             transition: width 0.3s ease;
         }
 
@@ -284,7 +306,7 @@
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 180px 0 100px;
+            padding: 200px 0 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -299,26 +321,50 @@
             height: 100%;
             background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTIwMCAwSDB2ODBoMTIwMFYweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PHBhdGggZD0iTTEyMDAgMTYwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIi8+PHBhdGggZD0iTTEyMDAgMzIwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDYpIi8+PHBhdGggZD0iTTEyMDAgNDgwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDQpIi8+PHBhdGggZD0iTTEyMDAgNjQwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDIpIi8+PC9nPjwvc3ZnPg==');
             opacity: 0.1;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-800px); }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
+            z-index: 2;
+            max-width: 900px;
             margin: 0 auto;
             animation: fadeIn 1s ease-out;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 25px;
             line-height: 1.2;
+            font-family: var(--font-heading);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 35px;
             opacity: 0.9;
+            line-height: 1.6;
         }
 
         .hero .location {
@@ -326,16 +372,16 @@
             align-items: center;
             gap: 8px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 30px;
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-            animation: float 3s ease-in-out infinite;
+            margin-bottom: 35px;
+            font-size: 1rem;
+            animation: float 4s ease-in-out infinite;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -357,8 +403,8 @@
             flex: 1;
             min-width: 250px;
             text-align: center;
-            padding: 30px 20px;
-            border-radius: 10px;
+            padding: 40px 25px;
+            border-radius: 12px;
             background: var(--light);
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -373,11 +419,11 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--primary);
+            background: var(--secondary);
         }
 
         .process-step:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             box-shadow: var(--shadow-lg);
         }
 
@@ -385,20 +431,27 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
         }
 
         .process-step h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
             color: var(--dark);
+            font-family: var(--font-heading);
+        }
+
+        .process-step p {
+            color: var(--gray);
+            line-height: 1.7;
         }
 
         /* Sección Planes */
@@ -414,7 +467,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTIwMCAwSDB2ODBoMTIwMFYweiIgZmlsbD0icmdiYSgzNywgOTksIDIzNSwgMC4wMykiLz48cGF0aCBkPSJNMTIwMCAxNjBIMHY4MGgxMjAwdi04MHoiIGZpbGw9InJnYmEoMzcsIDk5LCAyMzUsIDAuMDUpIi8+PHBhdGggZD0iTTEyMDAgMzIwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyZ2JhKDM3LCA5OSwgMjM1LCAwLjA3KSIvPjxwYXRoIGQ9Ik0xMjAwIDQ4MEgwdjgwaDEyMDB2LTgweiIgZmlsbD0icmdiYSgzNywgOTksIDIzNSwgMC4xKSIvPjxwYXRoIGQ9Ik0xMjAwIDY0MEgwdjgwaDEyMDB2LTgweiIgZmlsbD0icmdiYSgzNywgOTksIDIzNSwgMC4xNSkiLz48L2c+PC9zdmc+');
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTIwMCAwSDB2ODBoMTIwMFYweiIgZmlsbD0icmJnYSgyNiwgNTQsIDkzLCAwLjAzKSIvPjxwYXRoIGQ9Ik0xMjAwIDE2MEgwdjgwaDEyMDB2LTgweiIgZmlsbD0icmJnYSgyNiwgNTQsIDkzLCAwLjA1KSIvPjxwYXRoIGQ9Ik0xMjAwIDMyMEgwdjgwaDEyMDB2LTgweiIgZmlsbD0icmJnYSgyNiwgNTQsIDkzLCAwLjA3KSIvPjxwYXRoIGQ9Ik0xMjAwIDQ4MEgwdjgwaDEyMDB2LTgweiIgZmlsbD0icmJnYSgyNiwgNTQsIDkzLCAwLjEpIi8+PHBhdGggZD0iTTEyMDAgNjQwSDB2ODBoMTIwMHYtODB6IiBmaWxsPSJyYmdhKDI2LCA1NCwgOTMsIDAuMTUpIi8+PC9nPjwvc3ZnPg==');
             opacity: 0.5;
         }
 
@@ -425,14 +478,14 @@
 
         .plans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .plan-card {
             background: white;
-            border-radius: 10px;
-            padding: 40px 30px;
+            border-radius: 12px;
+            padding: 45px 35px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
@@ -441,64 +494,66 @@
         }
 
         .plan-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             box-shadow: var(--shadow-lg);
         }
 
         .plan-card.featured {
-            border: 2px solid var(--primary);
+            border: 3px solid var(--secondary);
             transform: scale(1.05);
-            background: linear-gradient(135deg, white 0%, #f0f7ff 100%);
+            background: linear-gradient(135deg, white 0%, #f5f9ff 100%);
         }
 
         .plan-card.featured::before {
             content: 'MÁS POPULAR';
             position: absolute;
             top: 20px;
-            right: -30px;
+            right: -35px;
             background: var(--secondary);
             color: white;
-            padding: 5px 30px;
-            font-size: 0.8rem;
+            padding: 8px 40px;
+            font-size: 0.9rem;
             font-weight: bold;
             transform: rotate(45deg);
+            box-shadow: var(--shadow);
         }
 
         .plan-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
+            transform: scale(1.05) translateY(-15px);
         }
 
         .plan-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--dark);
+            font-family: var(--font-heading);
         }
 
         .plan-card .price {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .plan-card .price span {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--gray);
         }
 
         .plan-card .price-note {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .plan-card ul {
-            margin: 25px 0;
+            margin: 30px 0;
             text-align: left;
         }
 
         .plan-card ul li {
-            padding: 8px 0;
+            padding: 10px 0;
             display: flex;
             align-items: center;
         }
@@ -507,39 +562,40 @@
             content: '✓';
             color: var(--success);
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 1.2rem;
         }
 
         .plan-card .btn {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .price-saving {
             display: inline-block;
             background: var(--success);
             color: white;
-            padding: 3px 10px;
+            padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 10px;
-        }
-
-        /* Sección Servicios */
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-weight: 600;
+            }
+     /* Sección Servicios */
         .services {
             background: white;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
         }
 
         .service-card {
             background: white;
-            border-radius: 10px;
-            padding: 30px;
+            border-radius: 12px;
+            padding: 35px 25px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
             text-align: center;
@@ -554,7 +610,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--primary);
+            background: var(--secondary);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -564,108 +620,39 @@
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
 
         .service-icon {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
             color: white;
-            font-size: 1.8rem;
-            transition: transform 0.3s ease;
+            font-size: 2rem;
+            transition: transform 0.5s ease;
+            box-shadow: var(--shadow);
         }
 
         .service-card:hover .service-icon {
-            transform: rotateY(180deg);
+            transform: rotateY(180deg) scale(1.1);
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
             color: var(--dark);
+            font-family: var(--font-heading);
         }
 
         .service-card p {
             color: var(--gray);
-        }
-
-        /* Sección Testimonios */
-        .testimonials {
-            background: var(--darker);
-            color: white;
-        }
-
-        .testimonials .section-title h2 {
-            color: white;
-        }
-
-        .testimonials .section-title p {
-            color: var(--gray-light);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 30px;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 4rem;
-            color: var(--primary-light);
-            opacity: 0.3;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .author-info h4 {
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            font-size: 0.9rem;
-            color: var(--gray-light);
+            line-height: 1.7;
         }
 
         /* Sección Contacto */
@@ -675,70 +662,74 @@
 
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
         }
 
         .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
             color: var(--dark);
+            font-family: var(--font-heading);
         }
 
         .contact-info p {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             color: var(--gray);
+            line-height: 1.7;
         }
 
         .contact-details {
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         .contact-detail {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .contact-detail i {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            margin-right: 15px;
+            margin-right: 20px;
+            font-size: 1.2rem;
         }
 
         .contact-form {
             background: var(--light);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            padding: 40px 35px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
+            color: var(--dark);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 18px;
             border: 1px solid var(--gray-light);
-            border-radius: 5px;
+            border-radius: 6px;
             font-family: var(--font-main);
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
@@ -746,11 +737,11 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
         }
 
@@ -758,99 +749,116 @@
         footer {
             background: var(--darker);
             color: white;
-            padding: 50px 0 20px;
+            padding: 70px 0 25px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-family: var(--font-heading);
         }
 
         .footer-column h3::after {
             content: '';
             position: absolute;
-            width: 40px;
+            width: 50px;
             height: 3px;
-            background: var(--primary);
+            background: var(--secondary);
             bottom: 0;
             left: 0;
         }
 
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            transition: color 0.3s ease;
         }
 
         .footer-column ul li a:hover {
             color: var(--secondary);
         }
 
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
+            background: var(--secondary);
+            transform: translateY(-5px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--gray-light);
         }
 
         /* Chatbot */
         .chatbot-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            width: 70px;
+            height: 70px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow-lg);
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-xl);
             cursor: pointer;
             z-index: 999;
             animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
         }
 
         .chatbot-container {
             position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
+            bottom: 110px;
+            right: 25px;
+            width: 380px;
+            height: 500px;
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: var(--shadow-xl);
             z-index: 999;
             display: none;
@@ -860,43 +868,54 @@
 
         .chatbot-container.active {
             display: flex;
+            animation: fadeIn 0.3s ease;
         }
 
         .chatbot-header {
             background: var(--primary);
             color: white;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .chatbot-header h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .chatbot-close {
             background: none;
             border: none;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .chatbot-close:hover {
+            transform: rotate(90deg);
         }
 
         .chatbot-messages {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
         }
 
         .message {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border-radius: 18px;
-            max-width: 80%;
-            font-size: 0.9rem;
+            max-width: 85%;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
         }
 
         .message.bot {
@@ -914,16 +933,17 @@
 
         .chatbot-input {
             display: flex;
-            padding: 15px;
+            padding: 20px;
             border-top: 1px solid var(--gray-light);
         }
 
         .chatbot-input input {
             flex: 1;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid var(--gray-light);
-            border-radius: 20px;
+            border-radius: 25px;
             outline: none;
+            font-size: 0.95rem;
         }
 
         .chatbot-input button {
@@ -931,13 +951,53 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             margin-left: 10px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-xl);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 0;
@@ -947,7 +1007,7 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 75%;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
@@ -955,7 +1015,8 @@
                 justify-content: center;
                 transition: right 0.3s ease;
                 box-shadow: var(--shadow-lg);
-                gap: 30px;
+                gap: 35px;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -964,6 +1025,7 @@
 
             .hamburger {
                 display: block;
+                z-index: 1000;
             }
 
             .hamburger.active div:nth-child(1) {
@@ -977,21 +1039,20 @@
             .hamburger.active div:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
-
-            .hero {
-                padding: 150px 0 80px;
+              .hero {
+                padding: 160px 0 90px;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .plan-card.featured {
@@ -999,12 +1060,47 @@
             }
 
             .plan-card.featured:hover {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
 
             .chatbot-container {
                 width: 90%;
                 right: 5%;
+                height: 450px;
+            }
+
+            .whatsapp-float, .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-steps, .plans-grid, .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1022,7 +1118,6 @@
                     <li><a href="#process">Proceso</a></li>
                     <li><a href="#plans">Planes</a></li>
                     <li><a href="#services">Servicios</a></li>
-                    <li><a href="#testimonials">Testimonios</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
                 <div class="hamburger">
@@ -1033,15 +1128,17 @@
             </nav>
         </div>
     </header>
-  <!-- Hero Section -->
+
+    <!-- Hero Section -->
     <section class="hero">
+        <div class="particles" id="particles"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="location">
                     <i class="fas fa-map-marker-alt"></i> Santa Rosa del Sur, Bolívar
                 </div>
                 <h1>Imperium Marketing</h1>
-                <p>Convertimos análisis en decisiones, y decisiones en resultados</p>
+                <p>Estrategia + Contenido + Formación + Influencia Local<br>Creamos marcas que conectan, venden y trascienden.</p>
                 <div class="hero-buttons">
                     <a href="#plans" class="btn">Ver Planes</a>
                     <a href="#contact" class="btn btn-secondary">Contactar Ahora</a>
@@ -1055,23 +1152,23 @@
         <div class="container">
             <div class="section-title">
                 <h2>Nuestro Proceso</h2>
-                <p>Un método probado que garantiza resultados tangibles para tu negocio</p>
+                <p>Un método probado que garantiza resultados tangibles para tu negocio a través de análisis profundos y estrategias personalizadas</p>
             </div>
             <div class="process-steps">
                 <div class="process-step fade-in">
                     <div class="step-number">1</div>
                     <h3>Análisis Profundo</h3>
-                    <p>Estudiamos tu mercado, competencia y audiencia para identificar oportunidades únicas.</p>
+                    <p>Estudiamos tu mercado, competencia y audiencia para identificar oportunidades únicas y desarrollar insights valiosos.</p>
                 </div>
                 <div class="process-step fade-in">
                     <div class="step-number">2</div>
                     <h3>Decisiones Estratégicas</h3>
-                    <p>Desarrollamos un plan personalizado basado en datos concretos, no en suposiciones.</p>
+                    <p>Desarrollamos un plan personalizado basado en datos concretos, no en suposiciones, para maximizar tu ROI.</p>
                 </div>
                 <div class="process-step fade-in">
                     <div class="step-number">3</div>
                     <h3>Ejecución Impecable</h3>
-                    <p>Implementamos la estrategia con contenido de alta calidad que genera engagement.</p>
+                    <p>Implementamos la estrategia con contenido de alta calidad que genera engagement y conversiones medibles.</p>
                 </div>
             </div>
         </div>
@@ -1082,67 +1179,77 @@
         <div class="container">
             <div class="section-title">
                 <h2>Planes de Marketing</h2>
-                <p>Elige el plan que mejor se adapte a tus necesidades. Precios competitivos en pesos colombianos.</p>
+                <p>Elige el plan que mejor se adapte a tus necesidades. Creamos marcas que conectan, venden y trascienden.</p>
             </div>
             <div class="plans-content">
                 <div class="plans-grid">
-                    <!-- Plan Básico -->
+                    <!-- Plan 1: IMPULSO LOCAL -->
                     <div class="plan-card fade-in">
-                        <h3>Básico</h3>
-                        <div class="price">$299.000<span>/mes</span></div>
-                        <div class="price-note">Ideal para emprendedores</div>
-                        <p>Perfecto para pequeños negocios que comienzan su journey digital</p>
+                        <h3>IMPULSO LOCAL</h3>
+                        <div class="price">$500.000<span></span></div>
+                        <div class="price-note">Ideal para negocios que quieren ganar visibilidad</div>
+                        <p>Gana visibilidad en Santa Rosa del Sur y conecta con tu público a través de contenido atractivo</p>
                         <ul>
-                            <li>Análisis inicial de mercado</li>
-                            <li>Estrategia básica de contenidos</li>
-                            <li>4 publicaciones por semana</li>
-                            <li>1 Reel/Vídeo mensual</li>
-                            <li>Informe mensual de resultados</li>
-                            <li>Soporte por email</li>
+                            <li>1 video profesional con Molina, influencer y socio estratégico</li>
+                            <li>Guion y dirección creativa adaptada al mensaje del cliente</li>
+                            <li>Publicación en redes del influencer</li>
+                            <li>Entrega del material para uso en las redes del cliente</li>
+                            <li>Recomendaciones básicas para mejorar perfil y comunicación visual</li>
                         </ul>
                         <a href="#contact" class="btn btn-secondary">Seleccionar Plan</a>
-                        <div class="price-saving">Ahorra 15% al pagar trimestral</div>
+                        <div class="price-saving">Atraer atención inmediata y construir confianza local</div>
                     </div>
 
-                    <!-- Plan Profesional -->
+                    <!-- Plan 2: ACELERADOR DE MARCA -->
                     <div class="plan-card featured fade-in">
-                        <h3>Profesional</h3>
-                        <div class="price">$599.000<span>/mes</span></div>
-                        <div class="price-note">El más popular</div>
-                        <p>Ideal para negocios en crecimiento que buscan escalar</p>
+                        <h3>ACELERADOR DE MARCA</h3>
+                        <div class="price">$1.000.000<span></span></div>
+                        <div class="price-note">Ideal para profesionalizar comunicación</div>
+                        <p>Profesionaliza tu comunicación y empieza a crear contenido propio guiado por expertos</p>
                         <ul>
-                            <li>Análisis detallado de competencia</li>
-                            <li>Estrategia personalizada multicanal</li>
-                            <li>6 publicaciones por semana</li>
-                            <li>4 Reels/Vídeos mensuales</li>
-                            <li>Campañas publicitarias básicas</li>
-                            <li>Informe quincenal de resultados</li>
-                            <li>Soporte prioritario</li>
-                            <li>Gestión de comentarios básica</li>
+                            <li>1 video con Molina (comercial, educativo o mixto)</li>
+                            <li>Asesoría personalizada en ventas, atención al cliente o estrategia de marca</li>
+                            <li>Mini cronograma de contenido con ideas, formatos y frecuencia</li>
+                            <li>Guía práctica para crear videos o reels con estructura profesional</li>
+                            <li>Análisis y plan de mejora para redes sociales</li>
                         </ul>
                         <a href="#contact" class="btn">Seleccionar Plan</a>
-                        <div class="price-saving">Ahorra 20% al pagar trimestral</div>
+                        <div class="price-saving">Aprende a crear tu propio contenido y mejorar conexión</div>
                     </div>
 
-                    <!-- Plan Premium -->
+                    <!-- Plan 3: MARCA POTENTE -->
                     <div class="plan-card fade-in">
-                        <h3>Premium</h3>
-                        <div class="price">$999.000<span>/mes</span></div>
-                        <div class="price-note">Para resultados máximos</div>
-                        <p>Para marcas establecidas que buscan dominar su mercado</p>
+                        <h3>MARCA POTENTE</h3>
+                        <div class="price">$1.500.000<span></span></div>
+                        <div class="price-note">Para diferenciarse y crear comunidad</div>
+                        <p>Para marcas que quieren diferenciarse, crear comunidad y lograr resultados sostenibles</p>
                         <ul>
-                            <li>Análisis integral de mercado y audiencia</li>
-                            <li>Estrategia multicanal avanzada</li>
-                            <li>Publicaciones diarias</li>
-                            <li>8+ Reels/Vídeos mensuales</li>
-                            <li>Campañas publicitarias avanzadas</li>
-                            <li>Informe semanal de resultados</li>
-                            <li>Gestión completa de comunidad</li>
-                            <li>Soporte 24/7</li>
-                            <li>Consultoría mensual estratégica</li>
+                            <li>2 videos con Molina (comerciales, educativos o de entretenimiento)</li>
+                            <li>2 sesiones de asesoría estratégica (branding, ventas y comunicación)</li>
+                            <li>Cronograma completo de contenido mensual con guiones y calendario</li>
+                            <li>Gestión de redes sociales durante 1 mes</li>
+                            <li>Diseño de biografía, copies y estética visual del perfil</li>
+                            <li>Entrenamiento guiado para grabar contenido de marca</li>
                         </ul>
                         <a href="#contact" class="btn btn-secondary">Seleccionar Plan</a>
-                        <div class="price-saving">Ahorra 25% al pagar trimestral</div>
+                        <div class="price-saving">Posiciona tu marca como referente local</div>
+                    </div>
+
+                    <!-- Plan 4: A TU MEDIDA -->
+                    <div class="plan-card fade-in">
+                        <h3>A TU MEDIDA</h3>
+                        <div class="price">Personalizado<span></span></div>
+                        <div class="price-note">Estrategia creada desde cero</div>
+                        <p>Para negocios que quieren una estrategia 100% personalizada ajustada a sus objetivos</p>
+                        <ul>
+                            <li>Reunión de diagnóstico para entender negocio, metas y tipo de cliente</li>
+                            <li>Diseño de plan flexible según necesidades</li>
+                            <li>Puede incluir videos, asesorías, manejo de redes o formación</li>
+                            <li>Acompañamiento estratégico durante la ejecución</li>
+                            <li>Máximo retorno de inversión</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-secondary">Solicitar Cotización</a>
+                        <div class="price-saving">Solución 100% personalizada</div>
                     </div>
                 </div>
             </div>
@@ -1154,75 +1261,28 @@
         <div class="container">
             <div class="section-title">
                 <h2>Nuestros Servicios</h2>
-                <p>Trabajamos con una amplia gama de clientes, adaptando nuestras estrategias a cada necesidad específica.</p>
+                <p>Trabajamos con una amplia gama de clientes, adaptando nuestras estrategias a cada necesidad específica para maximizar resultados.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-store"></i></div>
                     <h3>Negocios Locales</h3>
-                    <p>Impulsamos la visibilidad de comercios locales con estrategias adaptadas a tu comunidad y público objetivo.</p>
+                    <p>Impulsamos la visibilidad de comercios locales con estrategias adaptadas a tu comunidad y público objetivo, aumentando clientes y ventas.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-landmark"></i></div>
                     <h3>Campañas Políticas</h3>
-                    <p>Desarrollamos estrategias de comunicación efectivas para candidatos y partidos políticos.</p>
+                    <p>Desarrollamos estrategias de comunicación efectivas para candidatos y partidos políticos, conectando con electores de manera auténtica.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-palette"></i></div>
                     <h3>Artistas</h3>
-                    <p>Potenciamos la carrera de artistas mediante estrategias digitales que conectan con su audiencia.</p>
+                    <p>Potenciamos la carrera de artistas mediante estrategias digitales que conectan con su audiencia y expanden su alcance.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-user-tie"></i></div>
                     <h3>Marcas Personales</h3>
-                    <p>Construimos y fortalecemos tu marca personal para destacar en tu industria.</p>
-                </div>
-            </div>
-        </div>
-    </section>
- <!-- Sección Testimonios -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Lo que dicen nuestros clientes</h2>
-                <p>Casos de éxito reales que demuestran nuestro compromiso con los resultados</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-text">
-                        Imperium Marketing transformó completamente nuestra presencia digital. En 3 meses aumentamos nuestras ventas un 40%. Su enfoque basado en datos hace la diferencia.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MC</div>
-                        <div class="author-info">
-                            <h4>María Camila</h4>
-                            <p>Dueña de Boutique Elegante</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-text">
-                        Contraté el plan Profesional para mi campaña política y los resultados superaron todas mis expectativas. Logramos conectar con el electorado joven como nunca antes.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JC</div>
-                        <div class="author-info">
-                            <h4>Juan Carlos</h4>
-                            <p>Candidato a Concejal</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-text">
-                        Como artista, necesitaba una estrategia que reflejara mi esencia. Imperium no solo entendió mi visión, sino que la potenció. Mis seguidores se triplicaron en 4 meses.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <h4>Ana Sofía</h4>
-                            <p>Cantante y Compositora</p>
-                        </div>
-                    </div>
+                    <p>Construimos y fortalecemos tu marca personal para destacar en tu industria y generar oportunidades de negocio.</p>
                 </div>
             </div>
         </div>
@@ -1233,12 +1293,12 @@
         <div class="container">
             <div class="section-title">
                 <h2>Contáctanos</h2>
-                <p>¿Listo para llevar tu presencia digital al siguiente nivel? Completa el formulario y nos pondremos en contacto contigo.</p>
+                <p>¿Listo para llevar tu presencia digital al siguiente nivel? Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.</p>
             </div>
             <div class="contact-container">
                 <div class="contact-info fade-in">
                     <h3>Hablemos de tu proyecto</h3>
-                    <p>En Imperium Marketing, nos especializamos en transformar análisis en estrategias efectivas que generan resultados tangibles. Cuéntanos sobre tus objetivos y te ayudaremos a alcanzarlos.</p>
+                    <p>En Imperium Marketing, nos especializamos en transformar análisis en estrategias efectivas que generan resultados tangibles. Cuéntanos sobre tus objetivos y te ayudaremos a alcanzarlos con un plan personalizado.</p>
                     
                     <div class="contact-details">
                         <div class="contact-detail">
@@ -1252,14 +1312,14 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <strong>Email</strong>
-                                <p>info@imperiummarketing.com</p>
+                                <p>imperiummarketing5@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-detail">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <strong>Teléfono</strong>
-                                <p>+57 300 123 4567</p>
+                                <strong>Teléfono/WhatsApp</strong>
+                                <p>+57 324 4768568</p>
                             </div>
                         </div>
                     </div>
@@ -1283,15 +1343,15 @@
                             <label for="service">Servicio de interés</label>
                             <select id="service" name="service">
                                 <option value="">Selecciona una opción</option>
-                                <option value="basico">Plan Básico ($299.000/mes)</option>
-                                <option value="profesional">Plan Profesional ($599.000/mes)</option>
-                                <option value="premium">Plan Premium ($999.000/mes)</option>
-                                <option value="personalizado">Servicio Personalizado</option>
+                                <option value="impulso">Plan Impulso Local ($500.000)</option>
+                                <option value="acelerador">Plan Acelerador de Marca ($1.000.000)</option>
+                                <option value="potente">Plan Marca Potente ($1.500.000)</option>
+                                <option value="personalizado">Plan A Tu Medida (Personalizado)</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Mensaje</label>
-                            <textarea id="message" name="message" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                            <textarea id="message" name="message" placeholder="Cuéntanos sobre tu proyecto, objetivos y cualquier información relevante..."></textarea>
                         </div>
                         <button type="submit" class="btn">Enviar Mensaje</button>
                     </form>
@@ -1299,18 +1359,21 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Imperium Marketing</h3>
-                    <p>Convertimos análisis en decisiones, y decisiones en resultados. Agencia de marketing digital ubicada en Santa Rosa del Sur, Bolívar.</p>
+                    <p>Estrategia + Contenido + Formación + Influencia Local. Creamos marcas que conectan, venden y trascienden. Agencia de marketing digital ubicada en Santa Rosa del Sur, Bolívar.</p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> imperiummarketing5@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +57 324 4768568</p>
+                    </div>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/573244768568" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -1320,7 +1383,6 @@
                         <li><a href="#process">Nuestro Proceso</a></li>
                         <li><a href="#plans">Planes</a></li>
                         <li><a href="#services">Servicios</a></li>
-                        <li><a href="#testimonials">Testimonios</a></li>
                         <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </div>
@@ -1340,13 +1402,18 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/573244768568" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Chatbot -->
     <div class="chatbot-toggle">
         <i class="fas fa-comment-dots"></i>
     </div>
     <div class="chatbot-container">
         <div class="chatbot-header">
-            <h3>Asistente Virtual</h3>
+            <h3><i class="fas fa-robot"></i> Asistente Virtual</h3>
             <button class="chatbot-close"><i class="fas fa-times"></i></button>
         </div>
         <div class="chatbot-messages">
@@ -1420,16 +1487,18 @@
             chatbotContainer.classList.remove('active');
         });
 
-        // Respuestas del chatbot
+        // Respuestas del chatbot actualizadas
         const botResponses = [
-            "¡Claro! Nuestro plan Básico cuesta $299.000 mensuales e incluye análisis de mercado, estrategia de contenidos y 4 publicaciones semanales.",
-            "El plan Profesional es nuestro más popular a $599.000 mensuales. Incluye estrategia multicanal, 6 publicaciones semanales y campañas publicitarias.",
-            "El plan Premium cuesta $999.000 mensuales y es ideal para marcas establecidas. Incluye publicaciones diarias, gestión de comunidad y soporte 24/7.",
+            "¡Claro! Nuestro plan IMPULSO LOCAL cuesta $500.000 e incluye 1 video profesional con Molina, guion creativo y publicación en sus redes.",
+            "El plan ACELERADOR DE MARCA es nuestro más popular a $1.000.000. Incluye video con Molina, asesoría personalizada y mini cronograma de contenido.",
+            "El plan MARCA POTENTE cuesta $1.500.000 y es ideal para marcas establecidas. Incluye 2 videos con Molina, gestión de redes por 1 mes y entrenamiento.",
+            "El plan A TU MEDIDA es personalizado según tus necesidades. Incluye reunión de diagnóstico y diseño de estrategia específica para tu negocio.",
             "Trabajamos con negocios locales, políticos, artistas y marcas personales. Adaptamos nuestras estrategias a cada tipo de cliente.",
-            "Nuestro proceso consta de tres fases: análisis profundo, decisiones estratégicas y ejecución impecable. Garantizamos resultados basados en datos.",
-            "¡Excelente pregunta! Normalmente vemos resultados significativos en los primeros 3 meses, aunque algunos clientes reportan mejoras desde el primer mes.",
-            "Sí, ofrecemos descuentos por contratación trimestral: 15% en Básico, 20% en Profesional y 25% en Premium.",
-            "Puedes contactarnos por teléfono al +57 300 123 4567, por email a info@imperiummarketing.com o completando el formulario en nuestra web."
+            "¡Excelente pregunta! Normalmente vemos resultados significativos desde el primer video, con aumento de visibilidad y clientes en las primeras semanas.",
+            "Sí, Molina es nuestro influencer local y socio estratégico. Su contenido auténtico conecta perfectamente con la comunidad de Santa Rosa del Sur.",
+            "Puedes contactarnos por WhatsApp al +57 324 4768568, por email a imperiummarketing5@gmail.com o completando el formulario en nuestra web.",
+            "¡Perfecto! Te recomiendo nuestro plan ACELERADOR DE MARCA que combina contenido profesional con formación para que aprendas a crear tu propio contenido.",
+            "Entiendo. Te recomiendo agendar una consultoría gratuita para evaluar tus necesidades específicas. ¿Te gustaría que te contactemos?"
         ];
 
         // Función para agregar mensaje al chat
@@ -1447,32 +1516,39 @@
             const lowerMessage = message.toLowerCase();
             
             if (lowerMessage.includes('hola') || lowerMessage.includes('buenas')) {
-                addMessage('¡Hola! ¿En qué puedo ayudarte? Puedo informarte sobre nuestros planes, servicios o proceso de trabajo.');
+                addMessage('¡Hola! Soy el asistente de Imperium Marketing. ¿En qué puedo ayudarte? Puedo informarte sobre nuestros planes, servicios o proceso de trabajo.');
             } else if (lowerMessage.includes('precio') || lowerMessage.includes('cuesta') || lowerMessage.includes('plan')) {
-                if (lowerMessage.includes('básico')) {
+                if (lowerMessage.includes('impulso') || lowerMessage.includes('local')) {
                     addMessage(botResponses[0]);
-                } else if (lowerMessage.includes('profesional')) {
+                } else if (lowerMessage.includes('acelerador') || lowerMessage.includes('marca')) {
                     addMessage(botResponses[1]);
-                } else if (lowerMessage.includes('premium')) {
+                } else if (lowerMessage.includes('potente')) {
                     addMessage(botResponses[2]);
+                } else if (lowerMessage.includes('medida') || lowerMessage.includes('personalizado')) {
+                    addMessage(botResponses[3]);
                 } else {
-                    addMessage('Tenemos tres planes: Básico ($299.000/mes), Profesional ($599.000/mes) y Premium ($999.000/mes). ¿Te interesa alguno en particular?');
+                    addMessage('Tenemos cuatro planes: IMPULSO LOCAL ($500.000), ACELERADOR DE MARCA ($1.000.000), MARCA POTENTE ($1.500.000) y A TU MEDIDA (personalizado). ¿Te interesa alguno en particular?');
                 }
             } else if (lowerMessage.includes('servicio') || lowerMessage.includes('trabaj') || lowerMessage.includes('cliente')) {
-                addMessage(botResponses[3]);
-            } else if (lowerMessage.includes('proceso') || lowerMessage.includes('cómo')) {
                 addMessage(botResponses[4]);
+            } else if (lowerMessage.includes('proceso') || lowerMessage.includes('cómo')) {
+                addMessage('Nuestro proceso consta de tres fases: análisis profundo, decisiones estratégicas y ejecución impecable. Garantizamos resultados basados en datos y contenido de alta calidad.');
             } else if (lowerMessage.includes('tiempo') || lowerMessage.includes('resultado') || lowerMessage.includes('cuándo')) {
                 addMessage(botResponses[5]);
-            } else if (lowerMessage.includes('descuento') || lowerMessage.includes('promoción')) {
+            } else if (lowerMessage.includes('molina') || lowerMessage.includes('influencer')) {
                 addMessage(botResponses[6]);
-            } else if (lowerMessage.includes('contact') || lowerMessage.includes('teléfono') || lowerMessage.includes('email')) {
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('teléfono') || lowerMessage.includes('email') || lowerMessage.includes('whatsapp')) {
                 addMessage(botResponses[7]);
+            } else if (lowerMessage.includes('recomiend') || lowerMessage.includes('suger')) {
+                addMessage(botResponses[8]);
+            } else if (lowerMessage.includes('consult') || lowerMessage.includes('asesor')) {
+                addMessage(botResponses[9]);
             } else {
-                addMessage('Entiendo que quieres saber: ' + message + '. ¿Puedes ser más específico? Puedo ayudarte con información sobre precios, servicios o nuestro proceso.');
+                addMessage('Entiendo que quieres saber sobre: ' + message + '. ¿Puedes ser más específico? Puedo ayudarte con información sobre precios, servicios o nuestro proceso de trabajo.');
             }
         }
-  // Enviar mensaje al hacer clic en el botón
+
+        // Enviar mensaje al hacer clic en el botón
         chatbotSend.addEventListener('click', () => {
             const message = chatbotInput.value.trim();
             if (message) {
@@ -1499,7 +1575,7 @@
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Aquí normalmente enviaríamos el formulario a Formspree
+            // Aquí normalmente enviaríamos el formulario a un servidor
             // Para este ejemplo, mostraremos un mensaje de éxito
             const service = document.getElementById('service').value;
             let message = '¡Gracias por tu mensaje! ';
@@ -1520,6 +1596,36 @@
                 document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
             }
         });
+
+        // Efecto de partículas en el hero
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño y posición aleatorios
+                const size = Math.random() * 6 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Inicializar partículas al cargar la página
+        window.addEventListener('load', createParticles);
 
         // Efecto de "shine" en botones al cargar la página
         document.querySelectorAll('.btn').forEach(btn => {
